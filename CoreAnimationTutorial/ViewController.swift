@@ -23,7 +23,9 @@ class ViewController: UIViewController {
     }
     func setupGradientLayer(){
         gradientLayer.colors = [UIColor.yellow.cgColor, UIColor.red.cgColor,UIColor.green.cgColor]
-        gradientLayer.locations =  [0.0, 0.33,0.66]
+        gradientLayer.locations = [0.33, 0.66, 1.0]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 0, y: 1.0)
         gradientLayer.frame = self.view.frame
         gradientLayer.mask = layer
         viewAnimation.layer.addSublayer(gradientLayer)
@@ -69,8 +71,8 @@ class ViewController: UIViewController {
     @IBAction func startAnimationClicked(_ sender: Any) {
         // set up the animation
         let animation = CABasicAnimation(keyPath: "locations")
-        let toColors = [0.0,0.0,0.0]
-        let fromColors = [1.0,1.0,1.0]
+        let toColors = [0.33,0.66,1.0]
+        let fromColors = [0.0,0.0,0.0]
         animation.fromValue = fromColors
         animation.toValue = toColors
         animation.duration = 2.0
