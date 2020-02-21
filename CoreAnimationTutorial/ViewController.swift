@@ -22,15 +22,15 @@ class ViewController: UIViewController {
         setupMainLayer()
     }
     func setupGradientLayer(){
-        gradientLayer.colors = [UIColor.red.cgColor, UIColor.green.cgColor,UIColor.yellow.cgColor]
-        gradientLayer.locations =  [0.0, 0.25,0.5]
-        gradientLayer.frame = CGRect(x: self.view.frame.width / 2 - 50 , y: 50.0, width: 150.0, height: viewAnimation.frame.size.height * 0.75)
+        gradientLayer.colors = [UIColor.yellow.cgColor, UIColor.red.cgColor,UIColor.green.cgColor]
+        gradientLayer.locations =  [0.0, 0.33,0.66]
+        gradientLayer.frame = self.view.frame
         gradientLayer.mask = layer
         viewAnimation.layer.addSublayer(gradientLayer)
     }
     func setupMainLayer(){
         layer.frame = CGRect(x: self.view.frame.width / 2 - 50 , y: 50.0, width: 150.0, height: viewAnimation.frame.size.height * 0.75)
-        layer.fillColor = UIColor.green.cgColor
+        layer.fillColor = UIColor.brown.cgColor
         drawShapePath()
     }
     func drawShapePath() {
@@ -63,15 +63,16 @@ class ViewController: UIViewController {
                                           clockwise: !clockwise)
         combinedPath.addPath(openCirclePath2.cgPath)
         layer.path = combinedPath
-        viewAnimation.layer.addSublayer(layer)
         setupGradientLayer()
     }
 
     @IBAction func startAnimationClicked(_ sender: Any) {
         // set up the animation
         let animation = CABasicAnimation(keyPath: "locations")
-        animation.fromValue = [0.0, 0.0,0.0]
-        animation.toValue = [1.0, 1.0,1.0]
+        let toColors = [0.0,0.0,0.0]
+        let fromColors = [1.0,1.0,1.0]
+        animation.fromValue = fromColors
+        animation.toValue = toColors
         animation.duration = 2.0
         animation.autoreverses = true
         animation.repeatCount = Float.infinity
