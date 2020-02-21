@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     }
     func setupGradientLayer(){
         gradientLayer.colors = [UIColor.yellow.cgColor, UIColor.red.cgColor,UIColor.green.cgColor]
-        gradientLayer.locations = [0.33, 0.66, 1.0]
+        gradientLayer.locations = [0.0, 0.33, 0.66]
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradientLayer.endPoint = CGPoint(x: 0, y: 1.0)
         gradientLayer.frame = self.view.frame
@@ -76,7 +76,6 @@ class ViewController: UIViewController {
         animation.fromValue = fromColors
         animation.toValue = toColors
         animation.duration = 2.0
-        animation.autoreverses = true
         animation.repeatCount = Float.infinity
         // add the animation to the gradient
         gradientLayer.add(animation, forKey: nil)
